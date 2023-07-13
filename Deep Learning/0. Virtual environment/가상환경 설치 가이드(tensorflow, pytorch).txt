@@ -1,0 +1,97 @@
+기존 가이드(PPT, PDF)의 4페이지까지 참조하여 conda를 설치하고 업데이트 하세요.
+
+nvidia-smi
+를 입력하여 GPU 드라이버가 설치된 것을 확인하세요.
+
+만약 설치되지 않았다면,
+sudo apt-get install nvidia-driver-470 (470 이상이면 상관 없음)
+을 입력하여 설치하고 재부팅하세요.
+
+여기까지 진행하셨으면 각 다음 단계로 넘어가세요.
+
+
+
+
+
+* keras 환경 설치(base 환경에서 시작)
+
+conda create -n mldl_keras python=3.8
+
+conda activate mldl_keras
+를 입력한 뒤, 가상환경에 잘 진입했는지 확인하세요.
+
+conda install jupyter notebook
+
+pip install ipykernel
+
+python -m ipykernel install --user --name mldl_keras_kernel
+
+conda install -c conda-forge cudatoolkit=11.3 cudnn=8.1
+
+pip install tensorflow-gpu==2.6.0 keras==2.6.0 protobuf==3.20.1
+
+conda install -c conda-forge graphviz
+
+conda install matplotlib scipy tqdm scikit-learn scikit-image
+
+pip install pydot seaborn opencv-python split-folders
+
+
+
+
+
+* pytorch 환경 설치(base 환경에서 시작)
+
+conda create -n mldl_pytorch python=3.8
+
+conda activate mldl_pytorch
+를 입력한 뒤, 가상환경에 잘 진입했는지 확인하세요.
+
+conda install jupyter notebook
+
+pip install ipykernel
+
+python -m ipykernel install --user --name mldl_pytorch_kernel
+
+conda install -c conda-forge cudatoolkit=11.3 cudnn=8.1
+
+conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 -c pytorch
+
+conda install -c conda-forge graphviz
+
+conda install matplotlib scipy tqdm sklearn scikit-image
+
+pip install pydot seaborn torchsummary opencv-python split-folders
+
+
+
+두 환경을 설치 하셨으면, 각 실습마다 번갈아가면서 환경을 활성화하여 실습 진행주세요.
+
+ - 가상환경을 지우는 법 명령어
+   1) 쥬피터 커널에서 삭제: jupyter kernelspec uninstall 가상환경
+   2) 가상환경 삭제: conda remove --name 가상환경 --all
+   3) 완전 디렉토리 삭제: 파일 탐색기에서 'anaconda3/envs/'경로 안에 가상환경이 폴더로 존재함. 이걸 직접 삭제할 것.
+ - 아나콘다 설치 명령어
+   1) 아래 링크에서 아나콘다 다운로드(For Linux 확인 & sh 확장자 확인): https://www.anaconda.com/
+   2) 다운로드 폴더에서 터미널 실행
+   3) sh 명령어로 다운받은 파일 실행(예: sh Anaconda3-2021.sh)
+ - 아나콘다 지우기 명령어
+   1) conda install anaconda-clean
+   2) anaconda-clean
+   3) rm -rf ~/anaconda3
+
+
+GPU가 Keras에서 잘 돌아가는지 확인
+python   엔터
+from tensorflow.python.client import device_lib   엔터
+device_lib.list_local_devices()   엔터
+여기서 PC 내의 GPU 이름(예: NVIDIA GeForce GTX 1080 등)이 출력되면 문제 없음
+exit()   엔터
+
+
+GPU가 Pytorch에서 잘 돌아가는지 확인
+python   엔터
+import torch   엔터
+torch.cuda.is_available()   엔터
+출력된 결과가 'True'라면 문제 없음
+exit()   엔터
