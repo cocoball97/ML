@@ -1,0 +1,76 @@
+1. 아나콘다 설치 후 업데이트 (권장)
+- conda upgrade --all
+- python -m pip install --upgrade pip
+
+
+
+2. 가상환경 생성 
+- conda create –n <your environment> python = <python version>
+ex) conda create -n tf python = 3.8
+
+
+
+3. 주피터 노트북 설치
+- conda install jupyter notebook
+
+
+
+4. 새로 생성한 가상환경을 주피터 노트북 커널로 등록
+- python -m ipykernel install --user --name <kernel name>
+
+
+
+5. GPU 드라이버 확인 후, CUDA, CuDNN 설치
+- conda install -c conda-forge cudatoolkit=11.3 cudnn=8.1
+
+
+
+6. tensorflow-gpu, pytorch 설치 (반드시 gpu 버전으로 설치할 것)
+- pip install tensorflow-gpu==2.6.0 keras==2.6.0 protobuf==3.20.1
+- conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 -c pytorch
+
+
+
+7. 설치 여부 확인
+
+GPU가 Keras에서 잘 돌아가는지 확인
+python   엔터
+from tensorflow.python.client import device_lib   엔터
+device_lib.list_local_devices()   엔터
+여기서 PC 내의 GPU 이름(예: NVIDIA GeForce GTX 1080 등)이 출력되면 문제 없음
+exit()   엔터
+
+GPU가 Pytorch에서 잘 돌아가는지 확인
+python   엔터
+import torch   엔터
+torch.cuda.is_available()   엔터
+출력된 결과가 'True'라면 문제 없음
+exit()   엔터
+
+
+
++ 추가 ) 설치하면 유용한 패키지
+
+conda install -c conda-forge graphviz
+
+conda install matplotlib scipy tqdm scikit-learn scikit-image
+
+pip install pydot seaborn opencv-python split-folders
+
+
+
+
+ - 가상환경을 지우는 법 명령어
+   1) 쥬피터 커널에서 삭제: jupyter kernelspec uninstall 가상환경
+   2) 가상환경 삭제: conda remove --name 가상환경 --all
+   3) 완전 디렉토리 삭제: 파일 탐색기에서 'anaconda3/envs/'경로 안에 가상환경이 폴더로 존재함. 이걸 직접 삭제할 것.
+
+ - 아나콘다 설치 명령어
+   1) 아래 링크에서 아나콘다 다운로드(For Linux 확인 & sh 확장자 확인): https://www.anaconda.com/
+   2) 다운로드 폴더에서 터미널 실행
+   3) sh 명령어로 다운받은 파일 실행(예: sh Anaconda3-2021.sh)
+
+ - 아나콘다 지우기 명령어
+   1) conda install anaconda-clean
+   2) anaconda-clean
+   3) rm -rf ~/anaconda3
