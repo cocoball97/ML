@@ -15,8 +15,11 @@ ex) conda create -n tf python = 3.8
 
 
 
-4. 새로 생성한 가상환경을 주피터 노트북 커널로 등록
+4. 생성한 가상환경을 주피터 노트북 커널 등록
 - python -m ipykernel install --user --name <kernel name>
+
+4-(2). 주피터노트북 커널 삭제
+- jupyter kernelspec uninstall <kernel name>
 
 
 
