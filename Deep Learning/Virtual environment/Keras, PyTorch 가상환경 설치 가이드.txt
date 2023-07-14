@@ -32,6 +32,8 @@ ex) conda create -n tf python = 3.8
 +수정) 설치가 되지 않아 토치 버전 업그레이드
 - conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit=11.3 -c pytorch 
 
+(참고 : https://pytorch.kr/get-started/previous-versions/)
+
 
 7. 설치 여부 확인
 
